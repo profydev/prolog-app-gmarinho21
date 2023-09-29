@@ -6,22 +6,26 @@ describe("Project List", () => {
     // setup request mock
     cy.intercept("GET", "https://prolog-api.profy.dev/project", {
       fixture: "projects.json",
+      delayMs: 2000,
     }).as("getProjects");
 
     // open projects page
     cy.visit("http://localhost:3000/dashboard");
 
-    // wait for request to resolve
-    cy.wait("@getProjects");
+    // // wait for request to resolve
+    // cy.wait("@getProjects");
   });
 
   context("desktop resolution", () => {
     beforeEach(() => {
       cy.viewport(1025, 900);
+      cy.wait("@getProjects");
     });
 
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
+
+      // wait for request to resolve
 
       // get all project cards
       cy.get("main")
@@ -38,5 +42,16 @@ describe("Project List", () => {
             .should("have.attr", "href", "/dashboard/issues");
         });
     });
+  });
+
+  it("Loading Spinner showing correctly", () => {
+    // check if the spinner is visible
+    cy.get('[data-testid="spinner"]').should("be.visible");
+
+    // wait for request to resolve
+    cy.wait("@getProjects");
+
+    // check if the spinner is no longer visible
+    cy.get('[data-testid="spinner"]').should("not.exist");
   });
 });

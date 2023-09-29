@@ -58,3 +58,19 @@
 .pageNumber {
   font: font.$text-sm-medium;
 }
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: block;
+  margin: 126px auto;
+  animation: spinner 1.5s linear infinite;
+}

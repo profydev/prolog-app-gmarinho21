@@ -6,7 +6,16 @@ export function ProjectList() {
   const { data, isLoading, isError, error } = useGetProjects();
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return (
+      <div>
+        <img
+          src={"/icons/spinner.svg"}
+          alt="logo"
+          className={styles.spinner}
+          data-testid="spinner"
+        />
+      </div>
+    );
   }
 
   if (isError) {
