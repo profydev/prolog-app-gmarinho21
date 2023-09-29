@@ -44,6 +44,19 @@ describe("Sidebar Navigation", () => {
     });
   });
 
+  it("links are working", () => {
+    // check that each link leads to the correct page
+    cy.get("footer").contains("Version");
+
+    cy.get("footer").contains("Docs").should("have.attr", "href", "#");
+
+    cy.get("footer").contains("API").should("have.attr", "href", "#");
+
+    cy.get("footer").contains("Help").should("have.attr", "href", "#");
+
+    cy.get("footer").contains("Community").should("have.attr", "href", "#");
+  });
+
   context("mobile resolution", () => {
     beforeEach(() => {
       cy.viewport("iphone-8");
