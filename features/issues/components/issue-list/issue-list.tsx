@@ -18,7 +18,16 @@ export function IssueList() {
   const projects = useGetProjects();
 
   if (projects.isLoading || issuesPage.isLoading) {
-    return <div>Loading</div>;
+    return (
+      <div>
+        <img
+          src={"/icons/spinner.svg"}
+          alt="logo"
+          className={styles.spinner}
+          data-testid="spinner"
+        />
+      </div>
+    );
   }
 
   if (projects.isError) {

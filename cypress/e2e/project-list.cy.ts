@@ -40,3 +40,27 @@ describe("Project List", () => {
     });
   });
 });
+
+describe("Project List Spinner", () => {
+  beforeEach(() => {
+    // setup request mock
+    cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+      fixture: "projects.json",
+      delayMs: 2000,
+    }).as("getProjectsDelayed");
+
+    // open projects page
+    cy.visit("http://localhost:3000/dashboard");
+  });
+
+  it("Loading Spinner showing correctly");
+
+  // check if the spinner is visible
+  cy.get('[data-testid="spinner"]').should("be.visible");
+
+  // wait for request to resolve
+  cy.wait("@getProjectsDelayed");
+
+  // check if the spinner is no longer visible
+  cy.get('[data-testid="spinner"]').should("not.exist");
+});
