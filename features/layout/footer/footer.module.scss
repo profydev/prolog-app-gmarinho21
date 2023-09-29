@@ -1,0 +1,70 @@
+@use "@styles/color";
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/breakpoint";
+@use "@styles/z-index";
+@use "@styles/misc";
+
+.fixedContainer {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: color.$gray-50;
+  color: color.$gray-400;
+
+  @media (max-width: breakpoint.$mobile) {
+    flex-direction: column;
+    height: 177px;
+    align-items: center;
+  }
+}
+
+.fixedContainer > p {
+  @media (max-width: breakpoint.$mobile) {
+    order: 3;
+    margin: 0 0 24px;
+    text-align: center;
+  }
+}
+
+.fixedContainer > div {
+  @media (max-width: breakpoint.$mobile) {
+    margin: 24px 0 0;
+    order: 1;
+  }
+}
+
+.fixedContainer > img {
+  @media (max-width: breakpoint.$mobile) {
+    order: 2;
+    margin: 0;
+  }
+}
+
+.container {
+  width: 100%;
+  margin-left: -32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.version {
+  margin-left: 32px;
+  width: 160px;
+  font: font.$text-sm-regular;
+}
+
+.links {
+  color: color.$gray-500;
+  font: font.$text-sm-medium;
+  text-decoration: none;
+}
+
+.logo {
+  margin-right: 32px;
+}
