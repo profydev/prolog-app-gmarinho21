@@ -79,8 +79,8 @@ describe("Issue List", () => {
       cy.contains("Page 2 of 3");
 
       cy.reload();
+      cy.wait(20000);
       cy.wait(["@getProjects", "@getIssuesPage2"]);
-      cy.wait(1500);
       cy.contains("Page 2 of 3");
     });
   });
@@ -95,17 +95,17 @@ describe("Project List Spinner", () => {
     }).as("getProjectsDelayed");
 
     // open projects page
-    cy.visit("http://localhost:3000/dashboard");
+    cy.visit("http://localhost:3000/dashboard/issues");
   });
 
-  it("Loading Spinner showing correctly");
+  it("Loading Spinner showing correctly", () => {
+    // check if the spinner is visible
+    cy.get('[data-testid="spinner"]').should("be.visible");
 
-  // check if the spinner is visible
-  cy.get('[data-testid="spinner"]').should("be.visible");
+    // wait for request to resolve
+    cy.wait("@getProjectsDelayed");
 
-  // wait for request to resolve
-  cy.wait("@getProjectsDelayed");
-
-  // check if the spinner is no longer visible
-  cy.get('[data-testid="spinner"]').should("not.exist");
+    // check if the spinner is no longer visible
+    cy.get('[data-testid="spinner"]').should("not.exist");
+  });
 });
