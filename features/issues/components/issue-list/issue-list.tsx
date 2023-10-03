@@ -32,12 +32,38 @@ export function IssueList() {
 
   if (projects.isError) {
     console.error(projects.error);
-    return <div>Error loading projects: {projects.error.message}</div>;
+    return (
+      <div className={styles.errorMsg}>
+        <img src={"/icons/alert-circle.svg"} />
+        <span>There was a problem while loading the project data</span>
+        <button
+          className={styles.errorButton}
+          onClick={() => projects.refetch()}
+        >
+          {" "}
+          Try Again
+        </button>
+        <img src={"/icons/red-arrow-right.svg"} />
+      </div>
+    );
   }
 
   if (issuesPage.isError) {
     console.error(issuesPage.error);
-    return <div>Error loading issues: {issuesPage.error.message}</div>;
+    return (
+      <div className={styles.errorMsg}>
+        <img src={"/icons/alert-circle.svg"} />
+        <span>There was a problem while loading the issues page data</span>
+        <button
+          className={styles.errorButton}
+          onClick={() => issuesPage.refetch()}
+        >
+          {" "}
+          Try Again
+        </button>
+        <img src={"/icons/red-arrow-right.svg"} />
+      </div>
+    );
   }
 
   const projectIdToLanguage = (projects.data || []).reduce(

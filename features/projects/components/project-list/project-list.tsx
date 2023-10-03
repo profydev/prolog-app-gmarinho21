@@ -3,7 +3,7 @@ import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
 
 export function ProjectList() {
-  const { data, isLoading, isError, error } = useGetProjects();
+  const { data, isLoading, isError, error, refetch } = useGetProjects();
 
   if (isLoading) {
     return (
@@ -24,7 +24,10 @@ export function ProjectList() {
       <div className={styles.errorMsg}>
         <img src={"/icons/alert-circle.svg"} />
         <span>There was a problem while loading the project data</span>
-        <button className={styles.errorButton}> Try Again</button>
+        <button onClick={() => refetch} className={styles.errorButton}>
+          {" "}
+          Try Again
+        </button>
         <img src={"/icons/red-arrow-right.svg"} />
       </div>
     );
