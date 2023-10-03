@@ -1,5 +1,7 @@
 @use "@styles/breakpoint";
 @use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
 
 .list {
   display: grid;
@@ -30,4 +32,23 @@
   display: block;
   margin: 126px auto;
   animation: spinner 1.5s linear infinite;
+}
+
+.errorMsg {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: color.$error-25;
+  border: 1px solid color.$error-300;
+  border-radius: 8px;
+  color: color.$error-700;
+  gap: 12px;
+  font: font.$text-sm-medium;
+}
+
+.errorButton {
+  margin-left: auto;
+  background-color: color.$error-25;
+  color: color.$error-700;
+  border: none;
 }

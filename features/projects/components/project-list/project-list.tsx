@@ -20,7 +20,14 @@ export function ProjectList() {
 
   if (isError) {
     console.error(error);
-    return <div>Error: {error.message}</div>;
+    return (
+      <div className={styles.errorMsg}>
+        <img src={"/icons/alert-circle.svg"} />
+        <span>There was a problem while loading the project data</span>
+        <button className={styles.errorButton}> Try Again</button>
+        <img src={"/icons/red-arrow-right.svg"} />
+      </div>
+    );
   }
 
   return (
